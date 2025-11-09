@@ -11,6 +11,8 @@ public class JDBC_Operations {
     public static void main( String[] args ) throws Exception{
     	
     	//load the driver class
+		// Download the mysql connector 8 jar from: 
+		// https://sourceforge.net/projects/jdbcsql/files/jdbc/mysql-connector-java-8.0.18.jar/download
     	Class.forName("com.mysql.cj.jdbc.Driver");		// step-1
         System.out.println("Driver loaded Successfully");
         
