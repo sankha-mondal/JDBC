@@ -17,7 +17,8 @@ public class UserRepository {
 	public UserRepository(JdbcTemplate jdbc) {
 		this.jdbc = jdbc;
 	}
-
+//==============================================================================================================
+	
 	private final RowMapper<User> userRowMapper = (rs, rowNum) -> mapRow(rs);
 
 	private User mapRow(ResultSet rs) throws SQLException {
@@ -28,6 +29,8 @@ public class UserRepository {
 
 		return u;
 	}
+
+//=============================================================================================================
 
 	public List<User> findAll() {
 		return jdbc.query("SELECT * FROM users", userRowMapper);
