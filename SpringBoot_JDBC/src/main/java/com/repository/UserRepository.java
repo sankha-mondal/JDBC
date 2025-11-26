@@ -17,6 +17,7 @@ public class UserRepository {
 	public UserRepository(JdbcTemplate jdbc) {
 		this.jdbc = jdbc;
 	}
+	
 //================================================================================================================================
 	
 	private final RowMapper<User> userRowMapper = (rs, rowNum) -> mapRow(rs);
