@@ -17,7 +17,7 @@ public class UserRepository {
 	public UserRepository(JdbcTemplate jdbc) {
 		this.jdbc = jdbc;
 	}
-//==============================================================================================================
+//================================================================================================================================
 	
 	private final RowMapper<User> userRowMapper = (rs, rowNum) -> mapRow(rs);
 
@@ -30,28 +30,39 @@ public class UserRepository {
 		return u;
 	}
 
-//=============================================================================================================
+//===============================================================================================================================
 
 	public List<User> findAll() {
 		return jdbc.query("SELECT * FROM users", userRowMapper);
 	}
+
+//===============================================================================================================================
 
 	public Optional<User> findById(Long id) {
 		List<User> list = jdbc.query("SELECT * FROM users WHERE id = ?", userRowMapper, id);
 		return list.stream().findFirst();
 	}
 
+//===============================================================================================================================
+
 	public int save(User user) {
 		// returns rows affected
 		return jdbc.update("INSERT INTO users(username, email) VALUES (?, ?)", user.getUsername(), user.getEmail());
 	}
 
+//===============================================================================================================================
+
 	public int update(Long id, User user) {
 		return jdbc.update("UPDATE users SET username = ?, email = ? WHERE id = ?", user.getUsername(), user.getEmail(),
 				id);
 	}
+	
+//==============================================================================================================================
 
 	public int delete(Long id) {
 		return jdbc.update("DELETE FROM users WHERE id = ?", id);
 	}
+
+//===============================================================================================================================
+	
 }
